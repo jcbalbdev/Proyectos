@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import proyectos from '../config/proyectos.json'
 ---
 
 <Layout title="Welcome to Astro.">
@@ -11,29 +12,14 @@ import Card from '../components/Card.astro';
 			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
 		</p>
 		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
+			{
+				proyectos.map((proyecto)=>(
+				<Card title={proyecto.title} href={proyecto.href} body={proyecto.body} />
+				)
+				)
+			}
 
 
-			<li class="flex  bg-white rounded-lg border-2 shadow-lg overflow-hidden hover:border-purple-400 transition-all">
-				<a href="/calculadora" class="w-full text-slate-900 text-base py-4 px-5 ">
-					<h2 class="m-0 text-lg text-slate-700 ">
-						Calculadora
-						<span>&rarr;</span>
-					</h2>
-					<p class="mt-1 mb-0 text-base text-slate-600">
-						Calculadora hecha con javascript vainilla, tailwind , html y astro 🐱‍👤
-					</p>
-				</a>
-			</li>
 
 		</ul>
 	</main>

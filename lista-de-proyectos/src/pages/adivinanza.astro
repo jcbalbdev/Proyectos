@@ -1,0 +1,113 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+    <header>
+      <h1 class="text-3xl text-center">Proyectos con <span class="text-gradient">Javascript Vanilla</span></h1>
+      <p class="instructions">
+        Juego de adivina un numero hecha con <strong>javascript vainilla, tailwind , html y astro</strong> 
+        <a href="/">⬅</a>
+      </p>
+    </header>
+
+
+    <section class="bg-white rounded-2xl border-2 p-4">
+      <div>
+        <h1 class="text-lg text-center font-semibold">Adivina el numero</h1>
+        <p class="text-center mb-4">Introduce un numero entre 1 y 100</p>
+        <div class="text-center p-2">
+          <input type="number" id="numeroEntrada" class="bg-slate-100 rounded-2xl p-4 shadow-lg">
+          <button class="chequearResultado m-2 py-2 px-4 bg-slate-600 rounded-2xl text-white" >comprobar</button>
+        </div>
+        <p id="mensaje" class="text-center text-lg">A jugar!!</p>
+        <h3 class="inline-block m-2">Cantidad de intentos:</h3>
+        <p id="intento" class="inline-block">0</p>
+      </div>
+    </section>
+
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1.5rem;
+		max-width: 60ch;
+	}
+	h1 {
+		font-size: 3rem;
+		font-weight: 800;
+		margin: 0;
+	}
+	.text-gradient {
+		background-image: var(--accent-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-size: 400%;
+		background-position: 0%;
+	}
+	.instructions {
+		line-height: 1.6;
+		margin: 1rem 0;
+		border: 1px solid rgba(var(--accent), 25%);
+		background-color: white;
+		padding: 1rem;
+		border-radius: 0.4rem;
+	}
+	.instructions code {
+		font-size: 0.875em;
+		font-weight: bold;
+		background: rgba(var(--accent), 12%);
+		color: rgb(var(--accent));
+		border-radius: 4px;
+		padding: 0.3em 0.45em;
+	}
+	.instructions strong {
+		color: rgb(var(--accent));
+	}
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		gap: 1rem;
+		padding: 0;
+	}
+</style>
+
+<script>
+  let numeroAzar = Math.floor(Math.random()*100) + 1;
+  let numeroEntrada = document.getElementById("numeroEntrada");
+  let mensaje = document.getElementById("mensaje");
+  let buttons =  document.querySelectorAll("button.chequearResultado");
+  let intentos = 0;
+  buttons.forEach((button)=>{
+    button.addEventListener('click',()=>{
+      let numeroIngresado = Number(numeroEntrada.value);
+      intentos++;
+      document.getElementById("intento").innerHTML = String(intentos)
+
+      if(numeroIngresado < 1 || numeroIngresado>100 || isNaN(numeroIngresado)){
+        mensaje.innerHTML = "ingrese un nuevo numero entre 1 y 100";
+        mensaje.style.color = "red";
+        return
+      }
+
+
+      if(numeroIngresado === numeroAzar){
+        mensaje.innerHTML = "Adivinaste"
+        mensaje.style.color="green";
+        numeroEntrada.disabled = "true"
+      }else if(numeroIngresado < numeroAzar){
+        mensaje.innerHTML = "elige un numero mas alto"
+        mensaje.style.color="red";
+      }else{
+        mensaje.innerHTML = "elige un numero mas bajo"
+        mensaje.style.color="red";
+      }
+    })
+  });
+
+  
+</script>

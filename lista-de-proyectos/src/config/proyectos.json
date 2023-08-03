@@ -1,17 +1,17 @@
 [
   {
-    "title":"",
-    "body":"",
-    "href":""
+    "title":"Calculadora",
+    "body":"Calculadora hecha con javascript vainilla, tailwind , html y astro 🐱‍👤",
+    "href":"/calculadora"
   },
   {
-    "title":"",
-    "body":"",
-    "href":""
+    "title":"To do list",
+    "body":"Lista de tareas hecha con javascript vainilla, tailwind , html y astro.",
+    "href":"/todo"
   },
   {
-    "title":"",
-    "body":"",
-    "href":""
+    "title":"Adivina el numero",
+    "body":"Adivina el numero generado al azar",
+    "href":"/adivinanza"
   }
 ]
